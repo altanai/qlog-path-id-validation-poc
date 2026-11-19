@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {"name":"zero-boundary","valid":true,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","path_id":0,"data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"maximum-boundary","valid":true,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","path_id":4294967295,"data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"common-fields-inheritance","valid":true,"path_context_known":true,"trace":{"common_fields":{"path_id":7},"events":[{"time":1,"name":"quic:packet_sent","data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"connection-wide-event-may-omit-path","valid":true,"path_context_known":false,"trace":{"events":[{"time":1,"name":"quic:connection_closed","data":{}}]}},
+    {"name":"negative-value","valid":false,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","path_id":-1,"data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"value-overflow","valid":false,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","path_id":4294967296,"data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"missing-known-path-id","valid":false,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"path-id-only-inside-data","valid":false,"path_context_known":true,"trace":{"events":[{"time":1,"name":"quic:packet_sent","data":{"path_id":7,"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"common-fields-out-of-range","valid":false,"path_context_known":true,"trace":{"common_fields":{"path_id":4294967296},"events":[{"time":1,"name":"quic:packet_sent","data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}},
+    {"name":"common-fields-conflicts-with-event","valid":false,"path_context_known":true,"trace":{"common_fields":{"path_id":7},"events":[{"time":1,"name":"quic:packet_sent","path_id":8,"data":{"header":{"packet_type":"1RTT","packet_number":0}}}]}}
+  ]
+}
